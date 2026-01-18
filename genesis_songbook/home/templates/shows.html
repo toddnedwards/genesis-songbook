@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Genesis Songbook{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto text-center">
+        <h1 class="display-4 mb-4">Welcome to Genesis Songbook</h1>
+        <p class="lead text-muted mb-5">
+            Your comprehensive collection of Genesis songs, lyrics, and musical arrangements.
+        </p>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Songs Library</h5>
+                        <p class="card-text">Browse through our extensive collection of Genesis songs.</p>
+                        <a href="#" class="btn btn-primary">Explore Songs</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Albums</h5>
+                        <p class="card-text">Discover songs organized by Genesis albums and eras.</p>
+                        <a href="#" class="btn btn-primary">View Albums</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Search</h5>
+                        <p class="card-text">Find specific songs, lyrics, or musical arrangements.</p>
+                        <a href="#" class="btn btn-primary">Search Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

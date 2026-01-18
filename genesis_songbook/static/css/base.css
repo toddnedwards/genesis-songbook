@@ -1,0 +1,49 @@
+/* Genesis Songbook Base Styles */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.card {
+    transition: transform 0.2s ease-in-out;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+footer {
+    margin-top: auto;
+}
+
+.display-4 {
+    color: #333;
+}
+
+.lead {
+    margin-bottom: 2rem;
+}
+
+/* Custom alert styles */
+.alert {
+    border: none;
+    border-radius: 8px;
+}
+
+/* Navigation improvements */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-link:hover {
+    color: rgba(255,255,255,0.8) !important;
+}

@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Cart - Genesis Songbook{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        background-color: black !important;
+        color: white !important;
+    }
+    
+    .cart-item {
+        background-color: black;
+        border: 1px solid white;
+        color: white;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .btn-remove {
+        background-color: transparent;
+        color: white;
+        border: 1px solid white;
+        padding: 0.25rem 0.75rem;
+    }
+    
+    .btn-remove:hover {
+        background-color: white;
+        color: black;
+    }
+    
+    .btn-checkout {
+        background-color: white;
+        color: black;
+        border: 1px solid white;
+        padding: 1rem 2rem;
+        font-weight: bold;
+    }
+    
+    .btn-checkout:hover {
+        background-color: black;
+        color: white;
+        border: 1px solid white;
+    }
+    
+    .btn-continue {
+        background-color: transparent;
+        color: white;
+        border: 1px solid white;
+        padding: 1rem 2rem;
+    }
+    
+    .btn-continue:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+    }
+    
+    .cart-total {
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid white;
+        padding: 2rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="bg-black text-white py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="mb-3 text-white">Your Shopping Cart</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container bg-black text-white py-5">
+    {% if cart %}
+        <div class="row">
+            <div class="col-lg-8">
+                {% for item in cart %}
+                <div class="cart-item">
+                    <div class="row align-items-center">
+                        <div class="col-md-3">
+                            {% if item.product.image %}
+                            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="img-fluid">
+                            {% else %}
+                            <div class="bg-secondary d-flex align-items-center justify-content-center" style="height: 100px;">
+                                <span>No Image</span>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="text-white">{{ item.product.name }}</h5>
+                            {% if item.size %}
+                            <p class="text-white">Size: {{ item.size }}</p>
+                            {% endif %}
+                            <p class="text-white">Quantity: {{ item.quantity }}</p>
+                            <p class="text-white">Price: £{{ item.price }} each</p>
+                        </div>
+                        <div class="col-md-3 text-md-end">
+                            <p class="text-white mb-2"><strong>£{{ item.total_price }}</strong></p>
+                            <form action="{% url 'shop:cart_remove' item.product.id %}" method="post">
+                                {% csrf_token %}
+                                {% if item.size %}
+                                <input type="hidden" name="size" value="{{ item.size }}">
+                                {% endif %}
+                                <button type="submit" class="btn btn-remove btn-sm">Remove</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="cart-total">
+                    <h3 class="text-white mb-3">Order Summary</h3>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="text-white">Items ({{ cart|length }}):</span>
+                        <span class="text-white">£{{ cart.get_total_price }}</span>
+                    </div>
+                    <hr style="border-color: white;">
+                    <div class="d-flex justify-content-between mb-3">
+                        <strong class="text-white">Total:</strong>
+                        <strong class="text-white">£{{ cart.get_total_price }}</strong>
+                    </div>
+                    
+                    <a href="{% url 'shop:order_create' %}" class="btn btn-checkout w-100 mb-3">
+                        Proceed to Checkout
+                    </a>
+                    
+                    <a href="{% url 'shop:product_list' %}" class="btn btn-continue w-100">
+                        Continue Shopping
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="text-center py-5">
+            <h3 class="text-white">Your cart is empty</h3>
+            <p class="text-white mb-4">Add some products to get started!</p>
+            <a href="{% url 'shop:product_list' %}" class="btn btn-continue">
+                Browse Products
+            </a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,44 +1,145 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Home - Genesis Songbook{% endblock %}
+{% block title %}Shows - Genesis Songbook{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        background-color: black !important;
+        color: white !important;
+    }
+    
+    .show-entry {
+        padding: 1.5rem 0;
+        transition: all 0.3s ease;
+    }
+    
+    .show-entry:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .btn-tickets {
+        background-color: white;
+        color: black;
+        border: 1px solid white;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    .btn-tickets:hover {
+        background-color: black;
+        color: white;
+        border: 1px solid white;
+    }
+    
+    .month-header {
+        background-color: black;
+        color: white;
+        padding: 1.5rem 0;
+        margin: 2rem 0 1.5rem 0;
+        text-align: center;
+        border: 1px solid white;
+                background-color:cadetblue;
+    }
+    
+    .month-header h2 {
+        margin: 0;
+        font-size: 2rem;
+        font-weight: 600;
+        color: white;
+    }
+    
+    .no-shows-message {
+        text-align: center;
+        padding: 3rem 2rem;
+        background-color: black;
+        border: 1px solid white;
+        margin-bottom: 2rem;
+        color: white;
+    }
+    
+    .no-shows-message h3 {
+        color: white;
+        margin-bottom: 0.5rem;
+    }
+    
+    .month-section {
+        margin-bottom: 4rem;
+    }
+    
+    .badge.bg-secondary {
+        background-color: white !important;
+        color: black !important;
+    }
+    
+    strong {
+        color: white;
+        font-weight: 600;
+    }
+</style>
+{% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="col-lg-8 mx-auto text-center">
-        <h1 class="display-4 mb-4">Welcome to Genesis Songbook</h1>
-        <p class="lead text-muted mb-5">
-            Your comprehensive collection of Genesis songs, lyrics, and musical arrangements.
-        </p>
-        
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Songs Library</h5>
-                        <p class="card-text">Browse through our extensive collection of Genesis songs.</p>
-                        <a href="#" class="btn btn-primary">Explore Songs</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Albums</h5>
-                        <p class="card-text">Discover songs organized by Genesis albums and eras.</p>
-                        <a href="#" class="btn btn-primary">View Albums</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Search</h5>
-                        <p class="card-text">Find specific songs, lyrics, or musical arrangements.</p>
-                        <a href="#" class="btn btn-primary">Search Now</a>
-                    </div>
-                </div>
+<div class="bg-black text-white py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="mb-3 text-white"><strong>Upcoming Shows</strong></h1>
+                <p class="lead mb-0 text-white">Catch Genesis Songbook live - The UK's Premier Phil Collins Fronted Genesis Tribute Band</p>
             </div>
         </div>
     </div>
+</div>
+
+<div class="container bg-black text-white pb-5">
+    {% if has_any_shows %}
+        {% for month_data in monthly_shows %}
+        <div class="month-section">
+            <div class="month-header">
+                <h2 class="text-white">{{ month_data.month_name }}</h2>
+            </div>
+            
+            {% for show in month_data.shows %}
+            <div class="show-entry mb-4 pb-3" style="border-bottom: 1px solid white;">
+                <div class="row">
+                    <div class="col-md-3">
+                        <strong class="text-white">Date:</strong>
+                        <div class="text-white">{{ show.date|date:"l, F j, Y" }}</div>
+                        <div class="text-white">{{ show.date|date:"g:i A" }}</div>
+                    </div>
+                    <div class="col-md-6">
+                        <strong class="text-white">Venue:</strong>
+                        <div class="text-white">{{ show.venue }}</div>
+                        <div class="text-white">{{ show.location }}</div>
+                        {% if show.description %}
+                        <div class="text-white mt-2"><em>{{ show.description }}</em></div>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-3 text-md-end">
+                        {% if show.ticket_link %}
+                        <a href="{{ show.ticket_link }}" target="_blank" class="btn btn-tickets">
+                            Buy Tickets
+                        </a>
+                        {% else %}
+                        <span class="badge bg-secondary">Details TBA</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="no-shows-message">
+            <h3 class="text-white">No Upcoming Shows</h3>
+            <p class="lead text-white">Check back soon for new show announcements!</p>
+            <p class="text-white">Follow us on social media to be the first to know about new dates.</p>
+        </div>
+    {% endif %}
 </div>
 {% endblock %}

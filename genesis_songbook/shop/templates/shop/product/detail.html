@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }} - Genesis Songbook Store{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        background-color: black !important;
+        color: white !important;
+    }
+    
+    .product-image {
+        max-width: 100%;
+        height: auto;
+        border: 1px solid white;
+    }
+    
+    .product-price {
+        font-size: 2rem;
+        font-weight: bold;
+        color: white;
+        margin: 1rem 0;
+    }
+    
+    .product-description {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin: 2rem 0;
+    }
+    
+    .size-selector {
+        background-color: black;
+        color: white;
+        border: 1px solid white;
+        padding: 0.5rem;
+        font-size: 1rem;
+    }
+    
+    .size-selector:focus {
+        background-color: black;
+        color: white;
+        border-color: white;
+        box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+    }
+    
+    .quantity-input {
+        background-color: black;
+        color: white;
+        border: 1px solid white;
+        padding: 0.5rem;
+        width: 80px;
+        text-align: center;
+    }
+    
+    .quantity-input:focus {
+        background-color: black;
+        color: white;
+        border-color: white;
+        box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+    }
+    
+    .btn-add-cart {
+        background-color: white;
+        color: black;
+        border: 1px solid white;
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+        font-weight: bold;
+        width: 100%;
+        margin-top: 1rem;
+    }
+    
+    .btn-add-cart:hover {
+        background-color: black;
+        color: white;
+        border: 1px solid white;
+    }
+    
+    .btn-back {
+        background-color: transparent;
+        color: white;
+        border: 1px solid white;
+        padding: 0.5rem 1rem;
+    }
+    
+    .btn-back:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+    }
+    
+    .stock-info {
+        background-color: rgba(40, 167, 69, 0.2);
+        border: 1px solid #28a745;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        margin: 1rem 0;
+    }
+    
+    .out-of-stock {
+        background-color: rgba(220, 53, 69, 0.2);
+        border: 1px solid #dc3545;
+    }
+    
+    .product-meta {
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid white;
+        padding: 1.5rem;
+        margin-top: 2rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container bg-black text-white py-5">
+    <div class="row mb-3">
+        <div class="col-12">
+            <a href="{% url 'shop:product_list' %}" class="btn btn-back">
+                <i class="bi bi-arrow-left"></i> Back to Store
+            </a>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">
+            {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+            {% else %}
+            <div class="product-image d-flex align-items-center justify-content-center" style="height: 400px; background-color: rgba(255,255,255,0.1);">
+                <div class="text-center">
+                    <i class="bi bi-image" style="font-size: 4rem;"></i>
+                    <p class="mt-2">No Image Available</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        
+        <div class="col-md-6">
+            <h1 class="text-white mb-3">{{ product.name }}</h1>
+            
+            <div class="product-price">£{{ product.price }}</div>
+            
+            <div class="stock-info {% if product.stock <= 0 %}out-of-stock{% endif %}">
+                {% if product.stock > 0 %}
+                    <i class="bi bi-check-circle"></i> In Stock ({{ product.stock }} available)
+                {% else %}
+                    <i class="bi bi-x-circle"></i> Out of Stock
+                {% endif %}
+            </div>
+            
+            {% if product.stock > 0 %}
+            <form action="{% url 'shop:cart_add' product.id %}" method="post">
+                {% csrf_token %}
+                
+                <div class="mb-3">
+                    <label for="quantity" class="form-label text-white">Quantity:</label>
+                    <input type="number" class="quantity-input" id="quantity" name="quantity" value="1" min="1" max="{{ product.stock }}">
+                </div>
+                
+                {% if product.is_clothing %}
+                <div class="mb-3">
+                    <label for="size" class="form-label text-white">Size: <span class="text-danger">*</span></label>
+                    <select name="size" id="size" class="size-selector w-100" required>
+                        <option value="">Please select a size</option>
+                        <option value="S">Small (S)</option>
+                        <option value="M">Medium (M)</option>
+                        <option value="L">Large (L)</option>
+                        <option value="XL">Extra Large (XL)</option>
+                    </select>
+                    <small class="text-white-50">Size selection is required for clothing items</small>
+                </div>
+                {% endif %}
+                
+                <button type="submit" class="btn btn-add-cart">
+                    <i class="bi bi-cart-plus"></i> Add to Cart
+                </button>
+            </form>
+            {% else %}
+            <button class="btn btn-secondary w-100" disabled>
+                <i class="bi bi-x-circle"></i> Out of Stock
+            </button>
+            {% endif %}
+            
+            <div class="product-meta">
+                <h5 class="text-white mb-3">Product Information</h5>
+                <p><strong>Category:</strong> {{ product.category.name }}</p>
+                {% if product.is_clothing %}
+                <p><strong>Type:</strong> Clothing (Size selection required)</p>
+                {% endif %}
+                <p><strong>Product Code:</strong> {{ product.slug|upper }}</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3 class="text-white mb-3">Product Description</h3>
+            <div class="product-description text-white">
+                {{ product.description|linebreaks }}
+            </div>
+        </div>
+    </div>
+    
+    {% if cart_items_count > 0 %}
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <div class="alert alert-info bg-transparent border-light">
+                <i class="bi bi-cart-check"></i>
+                You have <strong>{{ cart_items_count }}</strong> item{{ cart_items_count|pluralize }} in your cart
+                <a href="{% url 'shop:cart_detail' %}" class="btn btn-outline-light btn-sm ms-2">View Cart</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

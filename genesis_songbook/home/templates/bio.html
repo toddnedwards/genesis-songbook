@@ -1,40 +1,106 @@
 {% extends 'base.html' %}
 
-{% block title %}Home - Genesis Songbook{% endblock %}
+{% block title %}Bio - Genesis Songbook{% endblock %}
 
 {% block content %}
-<div class="row">
+<div class="row bg-black">
+    <div class="col-lg-4 offset-lg-4 text-center my-4">
+            <img src="{{ MEDIA_URL }}band-audience-backdrop.webp" alt="Genesis Songbook Band Photo. Photography by Daz Hands"
+                class="img-fluid rounded mb-4">
+        </div>
+    </div>
+<div class="row bg-black text-white py-5">
     <div class="col-lg-8 mx-auto text-center">
-        <h1 class="display-4 mb-4">Welcome to Genesis Songbook</h1>
-        <p class="lead text-muted mb-5">
-            Your comprehensive collection of Genesis songs, lyrics, and musical arrangements.
+        <h1 class="display-4 mb-4 text-white">Meet The Genesis Songbook Members</h1>
+        <p class="lead text-shadow mb-5">
+            Celebrating the rich musical legacy of one of the UK’s biggest selling bands.
+
+            Featuring former members of Genesis Visible Touch - the vocal and musical talents of Chris O’Connell (And
+            Finally Phil Collins) and Tony Turrell (Fish, Thomas Dolby, Francis Dunnery, It Bites FD), alongside other
+            professional musicians with a passion for the music of Genesis.
+
+            Let us take you through the Songbook of Phil Collins fronted Genesis!
         </p>
-        
         <div class="row g-4">
             <div class="col-md-4">
                 <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Songs Library</h5>
-                        <p class="card-text">Browse through our extensive collection of Genesis songs.</p>
-                        <a href="#" class="btn btn-primary">Explore Songs</a>
+                    <div class="card-body bg-dark text-white">
+                        <img class="card-img-top" src="{{ MEDIA_URL }}chris-oconnell.webp"
+                            alt="Chris O'Connell Genesis Songbook. Photo Taken By David Wilson Photography.">
+                        <h5 class="card-title py-3">Chris O'Connell</h5>
+                        <p class="card-text">Chris is a lifelong Genesis fan from Liverpool. A multi-instrumentalist,
+                            Chris’ singing voice has an uncanny resemblance to that of Phil Collins. Chris also has a
+                            background in theater and acting, skills that he brings to the Genesis Songbook live show.
+                        </p>
+                        <a href="#" class="btn btn-primary">Find Out More</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Albums</h5>
-                        <p class="card-text">Discover songs organized by Genesis albums and eras.</p>
-                        <a href="#" class="btn btn-primary">View Albums</a>
+                    <div class="card-body bg-dark text-white">
+                        <img class="card-img-top" src="{{ MEDIA_URL }}tony-turrell.webp"
+                            alt="Tony Turrell Genesis Songbook. Photo Taken By Daz Hands Photography.">
+                        <h5 class="card-title py-3">Tony Turrell</h5>
+                        <p class="card-text">Since discovering the thing he’d been using as a clothes hanger was
+                            actually a piano at age 18, Tony has now been a professional musician for over 20 years.
+                            Working as keyboard player, co-writer and Musical Director for the likes of ex-Marillion
+                            frontman Fish, or as a technician/audio engineer for the likes of 80s synthpop star Thomas
+                            Dolby, Tony has also appeared ...
+                        </p>
+                        <a href="#" class="btn btn-primary">Find Out More</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Search</h5>
-                        <p class="card-text">Find specific songs, lyrics, or musical arrangements.</p>
-                        <a href="#" class="btn btn-primary">Search Now</a>
+                    <div class="card-body bg-dark text-white">
+                        <img class="card-img-top" src="{{ MEDIA_URL }}todd-nathaniel.webp"
+                            alt="Todd Nathaniel Genesis Songbook. Photo Taken By Daz Hands Photography.">
+                        <h5 class="card-title py-3">Todd Nathaniel</h5>
+                        <p class="card-text">Todd has been playing music since he was 7 years starting on the piano.
+                            When he was 14 years old he found a real love for rock music and started to learn guitar and
+                            drums. Since 14, Todd has continued to play in bands and on his own, with shows ranging from
+                            people’s front rooms to Stadiums...
+                        </p>
+                        <a href="#" class="btn btn-primary">Find Out More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body bg-dark text-white">
+                        <img class="card-img-top" src="{{ MEDIA_URL }}john-lovegrove.webp"
+                            alt="John Lovegrove Genesis Songbook. Photo Taken By Daz Hands Photography.">
+                        <h5 class="card-title py-3">John Lovegrove</h5>
+                        <p class="card-text">A talented player and singer, John started playing guitar at the tender age
+                            of eight, and in addition to Genesis claims that he also counts Pink Floyd and George Formby
+                            among his influences. This suggests that, whenever staring out upon six saintly shrouded
+                            men, he at least has the luxury of doing so through clean windows.
+                        </p>
+                        <a href="#" class="btn btn-primary">Find Out More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body bg-dark text-white">
+                        <img class="card-img-top" src="{{ MEDIA_URL }}leon-parr.webp"
+                            alt="Leon Parr Genesis Songbook. Photo Taken By Daz Hands Photography.">
+                        <h5 class="card-title py-3">Leon Parr</h5>
+                        <p class="card-text">Leon started drumming at school at the age of 13 and on leaving school went
+                            onto Leigh College and then on to Leeds College of Music between 93 – 96 where he studied
+                            for a degree in Jazz.
+
+                            He has been a pro since about 1996, with the usual mix of gigging and teaching. He spent
+                            most of the 90’s in a band called Mr So and So which supported Marillion on their 1997 U.K
+                            tour.
+
+                            For the last 10 years of so he has been part of the solo project of Marillion guitarist
+                            Steve Rothery which has seen the band play as far afield as Argentina, Mexico, Chilie and
+                            Brazil as well as...
+                        </p>
+                        <a href="#" class="btn btn-primary">Find Out More</a>
                     </div>
                 </div>
             </div>

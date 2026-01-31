@@ -25,7 +25,19 @@ SECRET_KEY = "django-insecure-xquplu6auwpkw39+%wz5orv5%iiphot6zgtf+(able%(q)d@-m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
+# CSRF settings for development
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.githubpreview.dev',
+    'https://*.app.github.dev', 
+    'https://*.preview.app.github.dev',
+    'https://*.codespaces.githubusercontent.com',
+    'http://127.0.0.1:8000',
+    'http://localhost:8000',
+    'https://localhost:8000',
+    'https://127.0.0.1:8000',
+]
 
 
 # Application definition
@@ -38,6 +50,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "home",
+    "shop",
 ]
 
 MIDDLEWARE = [
@@ -64,6 +77,7 @@ TEMPLATES = [
                 "django.template.context_processors.media",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "shop.context_processors.cart_context",
             ],
         },
     },
@@ -129,3 +143,10 @@ MEDIA_ROOT = BASE_DIR / "media"
 # https://docs.djangoproject.com/en/6.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Cart settings
+CART_SESSION_ID = 'cart'
+
+# Stripe settings
+STRIPE_PUBLIC_KEY = 'pk_test_your_stripe_public_key_here'  # Replace with your actual public key
+STRIPE_SECRET_KEY = 'sk_test_your_stripe_secret_key_here'  # Replace with your actual secret key

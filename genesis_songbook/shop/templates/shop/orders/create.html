@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+
+{% block title %}Checkout - Genesis Songbook{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        background-color: black !important;
+        color: white !important;
+    }
+    
+    .form-control, .form-select {
+        background-color: black;
+        color: white;
+        border: 1px solid white;
+    }
+    
+    .form-control:focus, .form-select:focus {
+        background-color: black;
+        color: white;
+        border-color: white;
+        box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+    }
+    
+    .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .form-label {
+        color: white;
+        font-weight: 600;
+    }
+    
+    .payment-method {
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid white;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        cursor: pointer;
+    }
+    
+    .payment-method:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .payment-method input[type="radio"] {
+        margin-right: 0.5rem;
+    }
+    
+    .btn-place-order {
+        background-color: white;
+        color: black;
+        border: 1px solid white;
+        padding: 1rem 2rem;
+        font-weight: bold;
+        width: 100%;
+    }
+    
+    .btn-place-order:hover {
+        background-color: black;
+        color: white;
+        border: 1px solid white;
+    }
+    
+    .order-summary {
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid white;
+        padding: 2rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="bg-black text-white py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="mb-3 text-white">Checkout</h1>
+                <p class="text-white">Complete your order</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container bg-black text-white py-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <form method="post">
+                {% csrf_token %}
+                <h3 class="text-white mb-4">Billing Details</h3>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="first_name" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="first_name" name="first_name" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="last_name" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="last_name" name="last_name" required>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="address" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="address" name="address" required>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="city" class="form-label">City</label>
+                        <input type="text" class="form-control" id="city" name="city" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="postal_code" class="form-label">Postal Code</label>
+                        <input type="text" class="form-control" id="postal_code" name="postal_code" required>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="country" class="form-label">Country</label>
+                    <input type="text" class="form-control" id="country" name="country" value="United Kingdom">
+                </div>
+                
+                <h3 class="text-white mb-4">Payment Method</h3>
+                
+                <div class="payment-method">
+                    <label>
+                        <input type="radio" name="payment_method" value="stripe" checked>
+                        <strong class="text-white">Credit/Debit Card (Stripe)</strong>
+                        <br>
+                        <small class="text-white">Pay securely with your credit or debit card</small>
+                    </label>
+                </div>
+                
+                <div class="payment-method">
+                    <label>
+                        <input type="radio" name="payment_method" value="paypal">
+                        <strong class="text-white">PayPal</strong>
+                        <br>
+                        <small class="text-white">Pay with your PayPal account</small>
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn btn-place-order mt-4">
+                    Place Order
+                </button>
+            </form>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="order-summary">
+                <h3 class="text-white mb-3">Order Summary</h3>
+                
+                {% for item in cart %}
+                <div class="d-flex justify-content-between mb-2">
+                    <span class="text-white">{{ item.product.name }} × {{ item.quantity }}</span>
+                    <span class="text-white">£{{ item.total_price }}</span>
+                </div>
+                {% endfor %}
+                
+                <hr style="border-color: white;">
+                
+                <div class="d-flex justify-content-between mb-3">
+                    <strong class="text-white">Total:</strong>
+                    <strong class="text-white">£{{ cart.get_total_price }}</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

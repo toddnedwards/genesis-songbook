@@ -3,7 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Genesis Songbook{% endblock %}</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>{% block title %}{{ seo_title }}{% endblock %}</title>
+    <meta name="description" content="{% block description %}{{ seo_description }}{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}{{ seo_keywords }}{% endblock %}">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="{{ seo_settings.site_name }}">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{% block canonical %}{{ seo_settings.website_url }}{{ request.get_full_path }}{% endblock %}">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ seo_settings.website_url }}{{ request.get_full_path }}">
+    <meta property="og:title" content="{% block og_title %}{{ seo_title }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ seo_description }}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ seo_og_image }}{% endblock %}">
+    <meta property="og:site_name" content="{{ seo_settings.site_name }}">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ seo_settings.website_url }}{{ request.get_full_path }}">
+    <meta name="twitter:title" content="{% block twitter_title %}{{ seo_title }}{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}{{ seo_description }}{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{{ seo_og_image }}{% endblock %}">
+    {% if seo_settings.twitter_handle %}<meta name="twitter:site" content="@{{ seo_settings.twitter_handle }}">{% endif %}
+    
+    <!-- Additional Meta Tags -->
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    <meta name="distribution" content="web">
+    <meta name="rating" content="general">
+    {% if seo_settings.location %}<meta name="geo.region" content="{{ seo_settings.location }}">{% endif %}
+    
+    <!-- Structured Data - Band/MusicGroup Schema -->
+    {% if seo_settings %}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MusicGroup",
+        "name": "{{ seo_settings.site_name }}",
+        "description": "{{ seo_settings.default_description }}",
+        "genre": "{{ seo_settings.band_genre }}",
+        {% if seo_settings.band_founded_year %}"foundingDate": "{{ seo_settings.band_founded_year }}",{% endif %}
+        "url": "{{ seo_settings.website_url }}",
+        {% if seo_settings.location %}"address": {
+            "@type": "PostalAddress",
+            "addressLocality": "{{ seo_settings.location }}"
+        },{% endif %}
+        {% if seo_settings.email %}"email": "{{ seo_settings.email }}",{% endif %}
+        {% if seo_settings.phone %}"telephone": "{{ seo_settings.phone }}",{% endif %}
+        "sameAs": [
+            {% if seo_settings.facebook_url %}"{{ seo_settings.facebook_url }}"{% if seo_settings.instagram_url or seo_settings.youtube_url %},{% endif %}{% endif %}
+            {% if seo_settings.instagram_url %}"{{ seo_settings.instagram_url }}"{% if seo_settings.youtube_url %},{% endif %}{% endif %}
+            {% if seo_settings.youtube_url %}"{{ seo_settings.youtube_url }}"{% endif %}
+        ]
+    }
+    </script>
+    {% endif %}
+    
+    <!-- Google Site Verification -->
+    {% if seo_settings.google_site_verification %}<meta name="google-site-verification" content="{{ seo_settings.google_site_verification }}">{% endif %}
+    
+    <!-- Google Analytics -->
+    {% if seo_settings.google_analytics_id %}
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ seo_settings.google_analytics_id }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ seo_settings.google_analytics_id }}');
+    </script>
+    {% endif %}
+    
     {% load static %}
     
     {% block meta %}

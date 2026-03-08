@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django import forms
-from .models import Show
+from .models import Show, SEOSettings, PageSEO
 
 class ShowAdminForm(forms.ModelForm):
     class Meta:
@@ -48,3 +48,75 @@ class ShowAdmin(admin.ModelAdmin):
         return obj.is_past
     is_past.boolean = True
     is_past.short_description = 'Past Show'
+
+@admin.register(SEOSettings)
+class SEOSettingsAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        # Allow adding only if no instance exists
+        return not SEOSettings.objects.exists()
+    
+    def has_delete_permission(self, request, obj=None):
+        # Prevent deletion of SEO settings  
+        return False
+    
+    fieldsets = (
+        ('Basic SEO', {
+            'fields': ('site_name', 'default_title', 'default_description', 'default_keywords'),
+            'description': 'Core SEO settings that apply to all pages by default.'
+        }),
+        ('Location & Business', {
+            'fields': ('location', 'phone', 'email', 'website_url'),
+            'description': 'Business information for local SEO and contact details.'
+        }),
+        ('Social Media', {
+            'fields': ('og_image', 'facebook_url', 'twitter_handle', 'instagram_url', 'youtube_url'),
+            'description': 'Social media profiles and Open Graph image.'
+        }),
+        ('Band Information', {
+            'fields': ('band_founded_year', 'band_genre'),
+            'description': 'Information about your Genesis tribute band for structured data.'
+        }),
+        ('Advanced SEO', {
+            'fields': ('google_analytics_id', 'google_site_verification'),
+            'description': 'Google Analytics and Search Console integration.',
+            'classes': ('collapse',)
+        })
+    )
+    
+    def changelist_view(self, request, extra_context=None):
+        """Redirect to edit form if settings exist, otherwise show add form"""
+        if SEOSettings.objects.exists():
+            settings = SEOSettings.objects.first()
+            from django.http import HttpResponseRedirect
+            from django.urls import reverse
+            return HttpResponseRedirect(reverse('admin:home_seosettings_change', args=[settings.pk]))
+        return super().changelist_view(request, extra_context)
+
+
+@admin.register(PageSEO)
+class PageSEOAdmin(admin.ModelAdmin):
+    list_display = ('page_slug', 'page_title', 'meta_description_preview', 'updated_at')
+    list_filter = ('created_at', 'updated_at')
+    search_fields = ('page_slug', 'page_title', 'meta_description')
+    
+    fieldsets = (
+        ('Page Identification', {
+            'fields': ('page_slug',),
+            'description': 'Enter the URL slug for the page (e.g., \"bio\", \"shows\", \"videos\")'
+        }),
+        ('SEO Content', {
+            'fields': ('page_title', 'meta_description', 'keywords'),
+            'description': 'Custom SEO content for this specific page.'
+        }),
+        ('Social Sharing', {
+            'fields': ('og_image',),
+            'description': 'Custom image for social media sharing (optional).'
+        })
+    )
+    
+    def meta_description_preview(self, obj):
+        """Show truncated meta description"""
+        if len(obj.meta_description) > 50:
+            return f"{obj.meta_description[:50]}..."
+        return obj.meta_description
+    meta_description_preview.short_description = 'Description Preview'

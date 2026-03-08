@@ -54,3 +54,7 @@ def photos(request):
 def videos(request):
     """Videos page view."""
     return render(request, 'videos.html')
+
+def chris_oconnell(request):
+    """Chris O'Connell bio page view."""
+    return render(request, 'chris_oconnell.html')

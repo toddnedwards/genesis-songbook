@@ -50,6 +50,9 @@ def photos(request):
     """Photos page view."""
     return render(request, 'photos.html')
 
+def contact(request):
+    """Photos page view."""
+    return render(request, 'contact.html')
 
 def videos(request):
     """Videos page view."""

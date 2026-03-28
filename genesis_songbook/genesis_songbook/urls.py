@@ -23,7 +23,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("home.urls")),
-    path("store/", include("shop.urls")),
+    # path("store/", include("shop.urls")),  # Store temporarily disabled
 ]
 
 # Serve media files in development

@@ -1,171 +1,60 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Home - Genesis Songbook{% endblock %}
+{% block title %}Chris O'Connell - Genesis Songbook{% endblock %}
 
 {% block extra_css %}
 <style>
-    body {
-        background-color: black;
-    }
-
-    /* Override main container margin for homepage */
-    main.container {
-        margin-top: 0 !important;
-    }
-
-    .hero-section {
-        position: relative;
-        height: 75vh;
-        min-height: 500px;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .hero-video {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        transform: translate(-50%, -50%);
-        z-index: -1;
-        object-fit: cover;
-    }
-
-    .hero-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.4);
-        z-index: 1;
-    }
-
-    .hero-content {
-        position: relative;
-        z-index: 2;
-        text-align: center;
-        color: white;
-        padding: 2rem;
-        max-width: 800px;
-    }
-
-    .hero-logo {
+    body { background-color: black; color: white; }
+    .bio-image {
         max-width: 300px;
         width: 100%;
-        height: auto;
-        margin-bottom: 2rem;
-        filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.8));
-    }
-
-    .hero-title {
-        font-size: 2.5rem;
-        font-weight: bold;
-        margin-bottom: 2rem;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-    }
-
-    .hero-testimonials {
-        font-size: 1.1rem;
-        line-height: 1.6;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-    }
-
-    .testimonial {
+        border-radius: 8px;
         margin-bottom: 1.5rem;
-        font-style: italic;
-    }
-
-    .testimonial-author {
-        font-weight: bold;
-        font-style: normal;
-        color: #f8f9fa;
-    }
-
-    /* Mobile optimizations */
-    @media (max-width: 768px) {
-        .hero-section {
-            min-height: 400px;
-        }
-
-        .hero-logo {
-            max-width: 200px;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-title {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-testimonials {
-            font-size: 1rem;
-        }
-
-        .hero-content {
-            padding: 1rem;
-        }
-    }
-
-    @media (max-width: 576px) {
-        .hero-title {
-            font-size: 1.5rem;
-        }
-
-        .hero-testimonials {
-            font-size: 0.9rem;
-        }
     }
 </style>
 {% endblock %}
 
 {% block content %}
-<section class="hero-section">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-        <img src="{{ MEDIA_URL }}chris-oconnell.webp" alt="Genesis Songbook Logo" class="hero-logo">
-        <h1 class="hero-title">Meet Chris O'Connell</h1>
-        <!-- <p class="hero-testimonials">"A must-have for any Genesis fan!" - Music Magazine</p>
-        <p class="hero-testimonials">"An incredible resource for musicians and fans alike." - Guitar World</p> -->
-        <h2 class="text-center">About Chris</h2>
-        <p>Chris is a lifelong Genesis fan from Liverpool. A multi-instrumentalist, Chris’ singing voice has an uncanny
+<div class="container py-5">
+    <div class="text-center">
+        <img src="{{ MEDIA_URL }}chris-oconnell.webp" alt="Chris O'Connell" class="bio-image">
+        <h1 class="mb-1">Meet Chris O'Connell</h1>
+    </div>
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-lg-8">
+            <h2>About Chris</h2>
+            <p>Chris is a lifelong Genesis fan from Liverpool. A multi-instrumentalist, Chris' singing voice has an uncanny
             resemblance to that of Phil Collins. Chris also has a background in theater and acting, skills that he
-            brings to the Genesis Songbook live show.
-            <br>
-            <h3 class="py-2">Chris’ gear:</h3>
-            <br>
-            What mic do you use Chris?
-            <br>
-            <h3 class="py-3">More about Chris…</h3>
-            I was born in Liverpool, England, nineteen-seventy-several!, i come from a musical family who are fairly
-            well known in the area, being the “home of The Beatles” it was quite normal for kids to pick up an
+            brings to the Genesis Songbook live show.</p>
+
+            <h3 class="mt-4">Chris' gear:</h3>
+            <p>What mic do you use Chris?</p>
+
+            <h3 class="mt-4">More about Chris…</h3>
+            <p>I was born in Liverpool, England, nineteen-seventy-several!, i come from a musical family who are fairly
+            well known in the area, being the "home of The Beatles" it was quite normal for kids to pick up an
             instrument at that time and it worked out that my dad and his brothers could play piano, guitar, saxophone,
             banjo, flute and sing between them! This for me was a huge head start as i had great music flowing into my
-            ears at a young age and was always around live gigs.
-            <br>
-            <br>
-            Aged 15 i started learning guitar, it seemed difficult at first but i loved the challenge of piecing it all
-            together, i loved effects and in particular what Dave Gilmour did on the Pink Floyd albums. I didn’t really
+            ears at a young age and was always around live gigs.</p>
+
+            <p>Aged 15 i started learning guitar, it seemed difficult at first but i loved the challenge of piecing it all
+            together, i loved effects and in particular what Dave Gilmour did on the Pink Floyd albums. I didn't really
             begin singing until i was about 19, a friend advised me to buy A TRICK OF THE TAIL and WIND AND WUTHERING, I
-            couldn’t believe my ears!
-            <br>
-            <br>
-            The albums seemed packed with amazing music and such variety, and Phil’s vocals were the best i had heard,
+            couldn't believe my ears!</p>
+
+            <p>The albums seemed packed with amazing music and such variety, and Phil's vocals were the best i had heard,
             dramatic, sad, powerful and so honest, and with a distinctive tone. I felt drawn to want to sing the songs
-            and sung them endlessly as well as other records/artists i found along the way.
-            <br>
-            <br>
-            Through the years i have worked in various bands, studio recordings, solo gigs, studied live performance for
+            and sung them endlessly as well as other records/artists i found along the way.</p>
+
+            <p>Through the years i have worked in various bands, studio recordings, solo gigs, studied live performance for
             a year in college, and wrote an albums worth of material which is unreleased. Many people who have seen me
-            perform always pass comment on my uncanny resemblance to Phil’s vocal sound/personality, which got me
-            thinking …wouldn’t it be great to be part of a show that can catch the spirit and magic of those Genesis
-            tours that i have dreamed i could see but cant without a time tunnel!…….and that’s when Genesis Songbook
+            perform always pass comment on my uncanny resemblance to Phil's vocal sound/personality, which got me
+            thinking …wouldn't it be great to be part of a show that can catch the spirit and magic of those Genesis
+            tours that i have dreamed i could see but cant without a time tunnel!…….and that's when Genesis Songbook
             ….came along, and we all shared the same vision and aspirations for us and the fans……its your show!</p>
+        </div>
     </div>
-    {% endblock %}
+</div>
+{% endblock %}

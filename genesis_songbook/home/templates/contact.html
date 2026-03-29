@@ -1,9 +1,48 @@
 {% extends 'base.html' %}
 
-{% block title %}Bio - Genesis Songbook{% endblock %}
+{% block title %}Contact - Genesis Songbook{% endblock %}
+
+{% block extra_css %}
+<style>
+    body { background-color: black; color: white; }
+    .form-control, .form-control:focus {
+        background-color: #1a1a1a;
+        border-color: #444;
+        color: white;
+    }
+    .form-control::placeholder { color: #888; }
+</style>
+{% endblock %}
 
 {% block content %}
-<div>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <h1 class="text-center mb-4">Contact Us</h1>
+            <hr>
+            <p class="text-center">If you’d like more information about Genesis Songbook, or would like to make enquiry, send us a message!</p>
 
+            {% if success %}
+                <div class="alert alert-success">Your message has been sent. We'll be in touch soon!</div>
+            {% endif %}
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <input type="text" name="name" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Message</label>
+                    <textarea name="message" class="form-control" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-light w-100">Send Message</button>
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}

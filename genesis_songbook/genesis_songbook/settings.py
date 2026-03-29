@@ -148,6 +148,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Cart settings
 CART_SESSION_ID = 'cart'
 
+# Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'genesissongbook@gmail.com'
+EMAIL_HOST_PASSWORD = '<your_app_password_here>'
+
 # Stripe settings
 STRIPE_PUBLIC_KEY = 'pk_test_your_stripe_public_key_here'  # Replace with your actual public key
 STRIPE_SECRET_KEY = 'sk_test_your_stripe_secret_key_here'  # Replace with your actual secret key

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Chris O'Connell - Genesis Songbook
+{% endblock %}
+
+{% block extra_css %}
+  <style>
+    body {
+      background-color: black;
+      color: white;
+    }
+    .bio-image {
+      max-width: 300px;
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div class="container py-5">
+    <div class="text-center">
+      <img src="{{ MEDIA_URL }}tony-turrell.webp" alt="Tony Turrell" class="bio-image" />
+      <h1 class="mb-1">Meet Tony Turrell</h1>
+    </div>
+
+    <div class="row justify-content-center mt-4">
+      <div class="col-lg-8">
+        <h2>About Tony</h2>
+        <p>Since discovering the thing he’d been using as a clothes hanger was actually a piano at age 18, Tony has now been a professional musician for over 20 years. Working as keyboard player, co-writer and Musical Director for the likes of ex-Marillion frontman Fish, or as a technician/audio engineer for the likes of 80s synthpop star Thomas Dolby, Tony has also appeared on several artists releases as a session player and toured the world numerous times, playing to audience sizes of anything from 15 to 150,000 in the process. His compositional abilities have additionally been sought by the likes of Hotel Chocolat for TV advertising campaigns and by library/production music firms.</p>
+
+        <h3 class="mt-4">Why Genesis then, Tony?</h3>
+        <p>First heard Genesis courtesy of much older siblings at the tender age of 6! Didn’t like it….. Completely captivated though (or possibly brainwashed?) at age 10 when the album ”Duke” was played by both sister and brother on separate visits home. Subsequently managed to see Collins fronted Genesis play live on 5 occasions between 84 and 92, and although listening tastes now range from Tchaikovsky and Karl Jenkins through to Masters At Work and Kendrick Lamarr, Genesis have always been the cornerstone and primary love.</p>
+
+        <h3 class="mt-4">Tony’s Gear:</h3>
+        <p>Largely based around Roland keyboards and sound modules with a couple of things like a Hammond XB1 and Yamaha piano module thrown in for good measure. Lots of programming involved to try and replicate sounds, unsurprisingly. Boring, eh?</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}

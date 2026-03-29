@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Chris O'Connell - Genesis Songbook{% endblock %}
+
+{% block extra_css %}
+<style>
+    body { background-color: black; color: white; }
+    .bio-image {
+        max-width: 300px;
+        width: 100%;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center">
+        <img src="{{ MEDIA_URL }}todd-nathaniel.webp" alt="Todd Nathaniel" class="bio-image">
+        <h1 class="mb-1">Meet Todd Nathaniel</h1>
+    </div>
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-lg-8">
+            <h2>About Todd</h2>
+            <p>Todd has been playing music since he was 7 years starting on the piano. When he was 14 years old he found a real love for rock music and started to learn guitar and drums. Since 14, Todd has continued to play in bands and on his own, with shows ranging from people’s front rooms to Stadiums.
+
+Todd has worked with various acts including It Bites FD with Francis Dunnery and Chad Wackerman as guitarist/ vocalist. He has also continued to work as a music producer, writing and mixing the latest Four Tops single, Freedom. He also continues to work as a professional musician for Disney and Royal Caribbean Cruiselines.</p>
+
+            <h3 class="mt-4">Why Genesis Todd?</h3>
+            <p>I’ve always enjoyed Genesis but always knew them as the later era. I've always loved Peter Gabriel and when I finally listened to earlier Genesis with Peter Gabriel and with Phil Collins too, I was blown away! I love the challenge of the songs and their pure talent as a band, and knew I wanted to be part of this band to get to recreate some of these amazing songs!</p>
+
+            <h3 class="mt-4">Todd’s Gear:</h3>
+            <p>Guitars
+
+Todd uses a Burny Les Paul, the same make used by Steve Hackett himself. Todd also uses a Fender Modern Jazz 5 string bass and Ibanez Jem. 
+
+Amp/ Pedals
+
+Todd uses a headrush pedalboard, Jim Dunlop Cry Baby, J Rockett Archer Klon pedal, TC electronics sub n up pedal and various others. He also uses a headrush FR1212 Speaker Cabinet.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

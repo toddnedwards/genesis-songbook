@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.mail import send_mail
 from django.utils import timezone
 from datetime import datetime, timedelta
 from collections import defaultdict
@@ -51,8 +52,20 @@ def photos(request):
     return render(request, 'photos.html')
 
 def contact(request):
-    """Photos page view."""
-    return render(request, 'contact.html')
+    """Contact page view."""
+    success = False
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        send_mail(
+            subject=f'Contact form message from {name}',
+            message=f'From: {name} <{email}>\n\n{message}',
+            from_email=email,
+            recipient_list=['genesissongbook@gmail.com'],
+        )
+        success = True
+    return render(request, 'contact.html', {'success': success})
 
 def videos(request):
     """Videos page view."""
@@ -61,3 +74,19 @@ def videos(request):
 def chris_oconnell(request):
     """Chris O'Connell bio page view."""
     return render(request, 'chris_oconnell.html')
+
+def tony_turrell(request):
+    """Tony Turrell bio page view."""
+    return render(request, 'tony_turrell.html')
+
+def todd_nathaniel(request):
+    """Tony Turrell bio page view."""
+    return render(request, 'todd_nathaniel.html')
+
+def john_lovegrove(request):
+    """Tony Turrell bio page view."""
+    return render(request, 'john_lovegrove.html')
+
+def leon_parr(request):
+    """Tony Turrell bio page view."""
+    return render(request, 'leon_parr.html')

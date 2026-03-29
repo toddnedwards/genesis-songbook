@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Chris O'Connell - Genesis Songbook{% endblock %}
+
+{% block extra_css %}
+<style>
+    body { background-color: black; color: white; }
+    .bio-image {
+        max-width: 300px;
+        width: 100%;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center">
+        <img src="{{ MEDIA_URL }}leon-parr.webp" alt="Leon Parr" class="bio-image">
+        <h1 class="mb-1">Meet Leon Parr</h1>
+    </div>
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-lg-8">
+            <h2>About Leon</h2>
+            <p>Leon started drumming at school at the age of 13 and on leaving school went onto Leigh College and then on to Leeds College of Music between 93 – 96 where he studied for a degree in Jazz.
+
+He has been a pro since about 1996, with the usual mix of gigging and teaching. He spent most of the 90’s in a band called Mr So and So which supported Marillion on their 1997 U.K tour.
+
+For the last 10 years of so he has been part of the solo project of Marillion guitarist Steve Rothery which has seen the band play as far afield as Argentina, Mexico, Chilie and Brazil as well as recording the album, ‘The Ghosts of Pripyat’ in 2014. In 2014 He also subbed for Ian Mosley of Marillion, playing with them on The Cruise to the Edge.
+
+Last year he played the drums on some tracks for the upcoming album which Steve has recorded with Steve Hacket from Genesis which hopefully will be out in the not too distant future.
+
+He is also currently the in-house teacher at Nicko McBrain’s Drum One in Manchester.
+He admits that although he did buy ‘Invisible Touch’ when it was released he is a bit of a late comer to Genesis fandom and lists his favourite albums as ‘The Lamb...’ and ‘Trick of the Tail.</p>
+            </div>
+    </div>
+</div>
+{% endblock %}

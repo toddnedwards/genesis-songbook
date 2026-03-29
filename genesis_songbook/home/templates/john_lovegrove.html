@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Chris O'Connell - Genesis Songbook{% endblock %}
+
+{% block extra_css %}
+<style>
+    body { background-color: black; color: white; }
+    .bio-image {
+        max-width: 300px;
+        width: 100%;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center">
+        <img src="{{ MEDIA_URL }}john-lovegrove.webp" alt="John Lovegrove" class="bio-image">
+        <h1 class="mb-1">Meet John Lovegrove</h1>
+    </div>
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-lg-8">
+            <h2>About John</h2>
+            <p>A talented player and singer, John started playing guitar at the tender age of eight, and in addition to Genesis claims that he also counts Pink Floyd and George Formby among his influences. This suggests that, whenever staring out upon six saintly shrouded men, he at least has the luxury of doing so through clean windows.
+
+When asked about his decision to join Genesis Songbook he says, "Unlike most bands who only offer digestives, Genesis Songbook offer chocolate hobnobs at auditions. It’s a small point, but tells you a lot about their approach to music and the care that they take to make sure that everything is right. I was really delighted to join the band."
+
+John has toured as a lighting and sound engineer with artists including David Bowie, Janet Jackson, Stereophonics, The Who, Kiss, Black Sabbath, and Bryan Adams. Amazingly he is still married and has most of his own teeth.</p>
+            </div>
+    </div>
+</div>
+{% endblock %}

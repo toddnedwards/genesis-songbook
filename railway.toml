@@ -4,5 +4,4 @@ buildCommand = "pip install -r requirements.txt && python genesis_songbook/manag
 
 [deploy]
 startCommand = "python genesis_songbook/manage.py migrate && gunicorn --chdir genesis_songbook genesis_songbook.wsgi"
-healthcheckPath = "/"
 restartPolicyType = "on_failure"

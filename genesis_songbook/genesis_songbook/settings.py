@@ -16,6 +16,8 @@ CSRF_TRUSTED_ORIGINS = [
     'https://*.preview.app.github.dev',
     'https://*.codespaces.githubusercontent.com',
     'https://*.up.railway.app',
+    'https://genesissongbook.com',
+    'https://www.genesissongbook.com',
     'http://127.0.0.1:8000',
     'http://localhost:8000',
 ]

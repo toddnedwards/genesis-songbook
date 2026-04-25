@@ -115,7 +115,7 @@
                     <div class="col-md-6">
                         <strong class="text-white">Venue:</strong>
                         <div class="text-white">{{ show.venue }}</div>
-                        <div class="text-white">{{ show.location }}
+                        <div class="text-white mb-3 mb-md-0">{{ show.location }}
                             {% if show.maps_link %}
                             <a href="{{ show.maps_link }}" target="_blank" title="View on Google Maps" class="ms-2">
                                 <img src="{% static 'img/google-maps.png' %}" alt="Google Maps" style="width:22px;height:22px;vertical-align:middle;">
@@ -131,7 +131,7 @@
                         <div class="text-white mt-2"><em>{{ show.description }}</em></div>
                         {% endif %}
                     </div>
-                    <div class="col-md-3 text-md-end">
+                    <div class="col-md-3 text-md-end text-center mt-3 mt-md-0">
                         {% if show.ticket_link %}
                         <a href="{{ show.ticket_link }}" target="_blank" class="btn btn-tickets">
                             Buy Tickets

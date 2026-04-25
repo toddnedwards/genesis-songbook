@@ -115,7 +115,13 @@
                     <div class="col-md-6">
                         <strong class="text-white">Venue:</strong>
                         <div class="text-white">{{ show.venue }}</div>
-                        <div class="text-white">{{ show.location }}</div>
+                        <div class="text-white">{{ show.location }}
+                            {% if show.maps_link %}
+                            <a href="{{ show.maps_link }}" target="_blank" title="View on Google Maps" class="ms-2">
+                                <i class="bi bi-geo-alt-fill" style="color: #ea4335; font-size: 1.2rem;"></i>
+                            </a>
+                            {% endif %}
+                        </div>
                         {% if show.description %}
                         <div class="text-white mt-2"><em>{{ show.description }}</em></div>
                         {% endif %}

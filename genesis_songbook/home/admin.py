@@ -28,8 +28,8 @@ class ShowAdmin(admin.ModelAdmin):
             'description': 'Select date and time for the show. Times can be selected in 30-minute intervals.'
         }),
         ('Ticketing', {
-            'fields': ('ticket_link',),
-            'description': 'Add the URL where people can buy tickets for this show'
+            'fields': ('ticket_link', 'maps_link', 'apple_maps_link'),
+            'description': 'Add ticket URL, Google Maps and Apple Maps links for the venue'
         }),
         ('Additional Details', {
             'fields': ('description',),

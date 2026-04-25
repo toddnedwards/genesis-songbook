@@ -8,6 +8,7 @@ class Show(models.Model):
     location = models.CharField(max_length=200, help_text="City, Country or State")
     ticket_link = models.URLField(blank=True, null=True, help_text="Link to buy tickets")
     maps_link = models.URLField(blank=True, null=True, help_text="Google Maps link for venue")
+    apple_maps_link = models.URLField(blank=True, null=True, help_text="Apple Maps link for venue")
     description = models.TextField(blank=True, null=True, help_text="Additional show information")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

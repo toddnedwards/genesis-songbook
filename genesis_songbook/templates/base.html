@@ -126,6 +126,37 @@
             display: flex;
             align-items: center;
         }
+
+        /* Mobile nav centred */
+        @media (max-width: 991px) {
+            .navbar-nav {
+                text-align: center;
+            }
+        }
+
+        /* Navbar toggler transition */
+        .navbar-toggler {
+            transition: transform 0.3s ease;
+            border: none;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        .navbar-toggler[aria-expanded="true"] {
+            transform: rotate(90deg);
+        }
+
+        /* Nav links fade in on mobile */
+        #navbarNav {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(-8px);
+        }
+
+        #navbarNav.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
     {% endblock %}
 

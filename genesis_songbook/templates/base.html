@@ -127,13 +127,18 @@
             align-items: center;
         }
 
+        /* Nav links always white */
+        .navbar-nav .nav-link {
+            color: rgba(255,255,255,0.85) !important;
+        }
+        .navbar-nav .nav-link:hover {
+            color: white !important;
+        }
+
         /* Mobile nav centred */
         @media (max-width: 991px) {
             .navbar-nav {
                 text-align: center;
-            }
-            .navbar-nav .nav-link {
-                color: rgba(255,255,255,0.85) !important;
             }
         }
 
@@ -149,16 +154,17 @@
             transform: rotate(90deg);
         }
 
-        /* Nav links fade in on mobile */
-        #navbarNav {
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            opacity: 0;
-            transform: translateY(-8px);
-        }
-
-        #navbarNav.show {
-            opacity: 1;
-            transform: translateY(0);
+        /* Nav links fade in on mobile only */
+        @media (max-width: 991px) {
+            #navbarNav {
+                transition: opacity 0.3s ease, transform 0.3s ease;
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+            #navbarNav.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
     {% endblock %}

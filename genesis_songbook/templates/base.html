@@ -127,21 +127,6 @@
             align-items: center;
         }
 
-        /* Nav links always white */
-        .navbar-nav .nav-link {
-            color: rgba(255,255,255,0.85) !important;
-        }
-        .navbar-nav .nav-link:hover {
-            color: white !important;
-        }
-
-        /* Mobile nav centred */
-        @media (max-width: 991px) {
-            .navbar-nav {
-                text-align: center;
-            }
-        }
-
         /* Navbar toggler transition */
         .navbar-toggler {
             transition: transform 0.3s ease;
@@ -154,16 +139,10 @@
             transform: rotate(90deg);
         }
 
-        /* Nav links fade in on mobile only */
+        /* Mobile nav centred */
         @media (max-width: 991px) {
-            #navbarNav {
-                transition: opacity 0.3s ease, transform 0.3s ease;
-                opacity: 0;
-                transform: translateY(-8px);
-            }
-            #navbarNav.show {
-                opacity: 1;
-                transform: translateY(0);
+            .navbar-nav {
+                text-align: center;
             }
         }
     </style>
@@ -172,7 +151,7 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-black text-white">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="{% url 'home:index' %}">
                 <img src="https://res.cloudinary.com/drjav45ns/image/upload/logo-black.webp" alt="Genesis Songbook Logo" height="40">

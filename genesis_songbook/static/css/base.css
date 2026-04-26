@@ -45,10 +45,6 @@ footer {
     border-bottom: 2px solid white;
 }
 
-.nav-link {
-    color: rgba(255,255,255,0.85) !important;
-}
-
 .nav-link:hover {
     color: rgba(255,255,255,0.8) !important;
 }

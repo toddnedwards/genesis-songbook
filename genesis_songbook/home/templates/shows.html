@@ -117,7 +117,7 @@
                         <div class="text-white">{{ show.venue }}</div>
                         <div class="text-white mb-3 mb-md-0">{{ show.location }}
                             {% if show.maps_link %}
-                            <a href="{{ show.maps_link }}" target="_blank" title="View on Google Maps" class="ms-2">
+                            <a href="{{ show.maps_link }}" target="_blank" title="View on Google Maps" class="ms-2 text-decoration-none">
                                 <img src="{% static 'img/google-maps.png' %}" alt="Google Maps" style="width:22px;height:22px;vertical-align:middle;">
                             </a>
                             {% endif %}
